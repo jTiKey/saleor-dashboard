@@ -11735,6 +11735,9 @@ export const ProductVariantBulkCreateDocument = gql`
     errors {
       ...BulkProductError
     }
+    productVariants {
+      id
+    }
   }
 }
     ${BulkProductErrorFragmentDoc}`;

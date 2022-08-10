@@ -367,6 +367,9 @@ export const ProductVariantBulkCreateMutation = gql`
       errors {
         ...BulkProductError
       }
+      productVariants {
+        id
+      }
     }
   }
 `;

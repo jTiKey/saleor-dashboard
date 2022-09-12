@@ -20,6 +20,7 @@ import Metadata from "@saleor/components/Metadata/Metadata";
 import PageHeader from "@saleor/components/PageHeader";
 import Savebar from "@saleor/components/Savebar";
 import SeoForm from "@saleor/components/SeoForm";
+import { Choice } from "@saleor/components/SingleSelectField";
 import {
   ChannelFragment,
   PermissionEnum,
@@ -100,6 +101,10 @@ export interface ProductUpdatePageProps {
   fetchReferencePages?: (data: string) => void;
   fetchReferenceProducts?: (data: string) => void;
   fetchAttributeValues: (query: string, attributeId: string) => void;
+  onAttributeValuesSearch: (
+    id: string,
+    query: string,
+  ) => Promise<Array<Choice<string, string>>>;
   onAssignReferencesClick: (attribute: AttributeInput) => void;
   onCloseDialog: () => void;
   onImageDelete: (id: string) => () => void;
@@ -149,6 +154,7 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
   onSubmit,
   isMediaUrlModalVisible,
   assignReferencesAttributeId,
+  onAttributeValuesSearch,
   onAssignReferencesClick,
   fetchReferencePages,
   fetchMoreReferencePages,
@@ -351,6 +357,7 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                     variants={variants}
                     variantAttributes={product?.productType.variantAttributes}
                     warehouses={warehouses}
+                    onAttributeValuesSearch={onAttributeValuesSearch}
                     onChange={handlers.changeVariants}
                     onRowClick={onVariantShow}
                   />
